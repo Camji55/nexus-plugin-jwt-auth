@@ -12,7 +12,7 @@
 
 
 ```
-npm install nexus-plugin-auth
+npm install nexus-plugin-jwt-auth
 ```
 
 <br>
@@ -23,16 +23,6 @@ TODO
 
 <br>
 
-## Worktime Contributions
-
-TODO
-
-<br>
-
 ## Runtime Contributions
-
-TODO
-
-## Testtime Contributions
 
 TODO
