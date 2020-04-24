@@ -1,0 +1,35 @@
+{
+  "name": "nexus-plugin-auth",
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/nexus-plugin-auth.esm.js",
+  "description": "A Nexus framework plugin",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build:doc": "doctoc README.md --notitle",
+    "build:ts": "tsc",
+    "build": "yarn -s build:ts && yarn -s build:doc",
+    "test": "jest",
+    "publish:stable": "dripip stable",
+    "publish:preview": "dripip preview",
+    "publish:pr": "dripip pr",
+    "prepack": "yarn -s build"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "watchPlugins": [
+      "jest-watch-typeahead/filename",
+      "jest-watch-typeahead/testname"
+    ]
+  }
+}
