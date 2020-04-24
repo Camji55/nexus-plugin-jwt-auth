@@ -1,6 +1,6 @@
 {
   "name": "nexus-plugin-jwt-auth",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/nexus-plugin-auth.esm.js",
@@ -10,8 +10,9 @@
   ],
   "scripts": {
     "dev": "tsc --watch",
+    "build:doc": "doctoc README.md --notitle",
     "build:ts": "tsc",
-    "build": "yarn -s build:ts",
+    "build": "yarn -s build:ts && yarn -s build:doc",
     "prepack": "yarn -s build"
   },
   "dependencies": {

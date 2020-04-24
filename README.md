@@ -1,15 +1,19 @@
-# nexus-plugin-jwt-auth <!-- omit in toc -->
+# JWT Auth Nexus Plugin<!-- omit in toc -->
 
 **Contents**
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
+- [Installation](#installation)
+- [Example Usage](#example-usage)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 <br>
 
 ## Installation
-
 
 ```
 npm install nexus-plugin-jwt-auth
@@ -19,10 +23,43 @@ npm install nexus-plugin-jwt-auth
 
 ## Example Usage
 
-TODO
+In `app.ts`:
+```typescript
+import { use } from 'nexus'
+import { auth } from 'nexus-plugin-jwt-auth'
 
-<br>
+// Enables the JWT Auth plugin
+use(auth({
+    appSecret: "<YOUR SECRET>"
+}))
+```
 
-## Runtime Contributions
+You may now access the `token` object and it's properties on the Nexus `context`.
 
-TODO
+> In this example when I sign the token on signup or login, I store the property accountId within it.
+
+In `Query.ts`:
+```typescript
+import { schema } from 'nexus'
+
+schema.queryType({
+  definition(t) {
+    t.field('me', {
+      type: 'Account',
+      async resolve(_root, _args, ctx) {
+        const account = await ctx.db.account.findOne({
+          where: {
+            id: ctx.token.accountId
+          }
+        })
+
+        if (!account) {
+          throw new Error('No such account exists')
+        }
+
+        return account
+      }
+    })
+  },
+})
+```
