@@ -1,10 +1,10 @@
 {
-  "name": "nexus-plugin-auth",
-  "version": "0.0.0",
+  "name": "nexus-plugin-jwt-auth",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/nexus-plugin-auth.esm.js",
-  "description": "A Nexus framework plugin",
+  "description": "",
   "files": [
     "dist"
   ],
