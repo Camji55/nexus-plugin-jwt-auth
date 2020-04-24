@@ -1,4 +1,4 @@
-# nexus-plugin-auth <!-- omit in toc -->
+# nexus-plugin-jwt-auth <!-- omit in toc -->
 
 **Contents**
 
