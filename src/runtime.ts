@@ -3,16 +3,21 @@ import { RuntimePlugin } from 'nexus/plugin'
 export const plugin: RuntimePlugin = () => project => {
   return {
     context: {
-      create: _req => {
+      create: (req: any) => {
+        var token = null
+        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+          token = req.headers.authorization.split(' ')[1]
+        }
+
         return {
-          'nexus-plugin-auth': 'hello world!'
+          token
         }
       },
       typeGen: {
         fields: {
-          'nexus-plugin-auth': 'string'
+          'token': 'null | string'
         }
       }
-    }
+    },
   }
 }
