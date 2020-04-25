@@ -15,6 +15,8 @@ npm install nexus-plugin-jwt-auth
 
 ## Example Usage
 
+### Setup
+
 ```typescript
 // app.ts
 
@@ -29,9 +31,11 @@ use(auth({
 
 You may now access the `token` object and it's properties on the Nexus `context`.
 
+### Permissions
+
 You can apply a custom middleware to add-on a permission system.
 
-> Ideally I make this part of the plugin or it's own plugin entirely, but unsure how I'd approach this.
+> Ideally I make this part of the plugin or it's own plugin entirely, but unsure how I'd approach this. [Help?](#contributing)
 
 ```typescript
 // middlewares.ts
@@ -63,9 +67,11 @@ schema.middleware((config) => {
 })
 ```
 
+### Stored Properties
+
 You can also access properties stored in the token.
 
-> In this example when I sign the token on signup or login, I store the property accountId within it.
+> In this example I sign the token on signup or login then store the accountId in the token to be accessed directly in a query or mutation to find the account of the authed user. 
 
 ```typescript
 // Query.ts
