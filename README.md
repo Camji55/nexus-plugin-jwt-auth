@@ -55,9 +55,15 @@ const protectedPaths = [
 schema.middleware((config) => {
     return async (root, args, ctx, info, next) => {
         const value = await next(root, args, ctx, info)
-        const resolver = `${config.parentTypeConfig.name}.${config.fieldConfig.name}`
+        const parentType = config.parentTypeConfig.name
 
-        if (!protectedPaths.includes(resolver)) {
+        if (parentType != 'Query' && parentType != 'Mutation') {
+            return value
+        }
+
+        const resolver = `${parentType}.${config.fieldConfig.name}`
+
+        if (!permissions.includes(resolver)) {
             return value
         }
 
