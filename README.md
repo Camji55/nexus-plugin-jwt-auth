@@ -41,7 +41,7 @@ Basic permissions can be added too.
 ```typescript
 // app.ts
 
-import { use, schema } from 'nexus'
+import { use } from 'nexus'
 import { auth } from 'nexus-plugin-jwt-auth'
 
 // Define the paths you'd like to protect
@@ -53,10 +53,7 @@ const protectedPaths: [
 // Enables the JWT Auth plugin with permissions
 use(auth({
     appSecret: "<YOUR SECRET>", // required
-    permissions: { // optional
-        protectedPaths,
-        schema
-    }
+    protectedPaths // optional
 }))
 ```
 
