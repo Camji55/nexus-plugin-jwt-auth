@@ -1,7 +1,6 @@
 import { RuntimePlugin } from 'nexus/plugin'
 import { verify } from 'jsonwebtoken'
 import { Settings } from './settings'
-import { applyMiddleware } from './middleware'
 
 export const plugin: RuntimePlugin<Settings> = settings => project => {
   return {
