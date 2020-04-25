@@ -26,12 +26,10 @@ npm install nexus-plugin-jwt-auth
 import { use } from 'nexus'
 import { auth } from 'nexus-plugin-jwt-auth'
 
-// Enables the JWT Auth plugin
+// Enables the JWT Auth plugin without permissions
 use(auth({
-    appSecret: "<YOUR SECRET>"
+    appSecret: "<YOUR SECRET>" // required
 }))
-
-...
 ```
 
 You may now access the `token` object and it's properties on the Nexus `context`.
@@ -40,42 +38,26 @@ You may now access the `token` object and it's properties on the Nexus `context`
 
 Basic permissions can be added too.
 
-> Ideally this can be placed in the plugin itself but I've been having issues with this. I'd love to hear suggestions!
-
 ```typescript
 // app.ts
 
-...
+import { use, schema } from 'nexus'
+import { auth } from 'nexus-plugin-jwt-auth'
 
-// Define the paths you'd like to be auth protected
-const protectedPaths = [
+// Define the paths you'd like to protect
+const protectedPaths: [
     'Query.me',
-    'Mutation.generateMagicLink'
+    'Mutation.editAccount'
 ]
 
-// Middleware is applied to check the resolver against the path
-schema.middleware((config) => {
-    return async (root, args, ctx, info, next) => {
-        const parentType = config.parentTypeConfig.name
-
-        if (parentType != 'Query' && parentType != 'Mutation') {
-            return await next(root, args, ctx, info)
-        }
-
-        const resolver = `${parentType}.${config.fieldConfig.name}`
-
-        if (!protectedPaths.includes(resolver)) {
-            return await next(root, args, ctx, info)
-        }
-
-        if (!ctx.token) { // This is the token object passed through the context
-            throw new Error('Not Authorized!')
-        }
-
-        return await next(root, args, ctx, info)
+// Enables the JWT Auth plugin with permissions
+use(auth({
+    appSecret: "<YOUR SECRET>", // required
+    permissions: { // optional
+        protectedPaths,
+        schema
     }
-})
-
+}))
 ```
 
 ### Stored Properties
@@ -107,7 +89,7 @@ schema.queryType({
                 return account
             }
         })
-    },
+    }
 })
 ```
 
