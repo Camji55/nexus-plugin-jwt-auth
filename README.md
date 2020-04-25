@@ -5,7 +5,6 @@
 - [Installation](#installation)
 - [Example Usage](#example-usage)
     - [Setup](#setup)
-    - [Permissions](#permissions)
     - [Stored Properties](#stored-properties)
 - [Contributing](#contributing)
 - [License](#license)
@@ -28,53 +27,15 @@ import { auth } from 'nexus-plugin-jwt-auth'
 
 // Enables the JWT Auth plugin
 use(auth({
-    appSecret: "<YOUR SECRET>"
+    appSecret: "<YOUR SECRET>", // Required
+    protectedPaths: [ // Optional - paths of the endpoints you'd like to protect
+        'Query.me',
+        'Mutation.editAccount'
+    ]
 }))
 ```
 
 You may now access the `token` object and it's properties on the Nexus `context`.
-
-### Permissions
-
-You can apply a custom middleware to add-on a permission system.
-
-> Ideally I make this part of the plugin or it's own plugin entirely, but unsure how I'd approach this. [Help?](#contributing)
-
-```typescript
-// middlewares.ts
-
-import { schema } from 'nexus'
-
-// List of protected paths
-const protectedPaths = [
-    'Query.me',
-    'Mutation.editAccount'
-]
-
-// Checks to see if the path is protected, and throws error if authentication fails
-schema.middleware((config) => {
-    return async (root, args, ctx, info, next) => {
-        const value = await next(root, args, ctx, info)
-        const parentType = config.parentTypeConfig.name
-
-        if (parentType != 'Query' && parentType != 'Mutation') {
-            return value
-        }
-
-        const resolver = `${parentType}.${config.fieldConfig.name}`
-
-        if (!permissions.includes(resolver)) {
-            return value
-        }
-
-        if (!ctx.token) { // This is the token object passed through the context
-            throw new Error('Not Authorized!')
-        }
-
-        return value
-    }
-})
-```
 
 ### Stored Properties
 
