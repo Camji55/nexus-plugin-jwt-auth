@@ -1,4 +1,4 @@
 export type Settings = {
     appSecret: string,
-    protectedPaths?: [string]
+    protectedPaths?: string[]
 }
