@@ -66,3 +66,7 @@ schema.queryType({
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md)
+
+## License
+
+Please read [LICENSE](LICENSE)
