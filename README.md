@@ -30,6 +30,8 @@ import { auth } from 'nexus-plugin-jwt-auth'
 use(auth({
     appSecret: "<YOUR SECRET>"
 }))
+
+...
 ```
 
 You may now access the `token` object and it's properties on the Nexus `context`.
@@ -44,11 +46,6 @@ Basic permissions can be added too.
 // app.ts
 
 ...
-
-// Enables the JWT Auth plugin
-use(auth({
-    appSecret: "<YOUR SECRET>"
-}))
 
 // Define the paths you'd like to be auth protected
 const protectedPaths = [
