@@ -9,6 +9,7 @@
 - [Installation](#installation)
 - [Example Usage](#example-usage)
 - [Contributing](#contributing)
+- [License](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
