@@ -47,7 +47,7 @@ schema.queryType({
       async resolve(_root, _args, ctx) {
         const account = await ctx.db.account.findOne({
           where: {
-            id: ctx.token.accountId
+            id: ctx.token.accountId // This is the token object passed through the context
           }
         })
 
