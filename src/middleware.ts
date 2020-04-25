@@ -1,6 +1,6 @@
 import { schema } from "nexus"
 
-function applyMiddleware(permissions: [string]) {
+function applyMiddleware(permissions: string[]) {
     schema.middleware((config) => {
         return async (root, args, ctx, info, next) => {
             const value = await next(root, args, ctx, info)
