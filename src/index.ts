@@ -1,7 +1,8 @@
 import { PluginEntrypoint } from 'nexus/plugin'
 import { Settings } from './settings'
+import { applyMiddleware } from './middleware'
 
-export const auth: PluginEntrypoint<Settings> = settings => ({
+const auth: PluginEntrypoint<Settings> = settings => ({
   settings,
   packageJsonPath: require.resolve('../package.json'),
   runtime: {
@@ -9,3 +10,5 @@ export const auth: PluginEntrypoint<Settings> = settings => ({
     export: 'plugin'
   }
 })
+
+export { auth, applyMiddleware }
