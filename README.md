@@ -63,6 +63,8 @@ schema.middleware((config) => {
 })
 ```
 
+You can also access properties stored in the token.
+
 > In this example when I sign the token on signup or login, I store the property accountId within it.
 
 ```typescript
