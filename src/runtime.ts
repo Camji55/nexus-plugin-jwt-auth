@@ -22,7 +22,7 @@ export const plugin: RuntimePlugin<Settings> = settings => project => {
       },
       typeGen: {
         fields: {
-          'token': 'null | string'
+          'token': 'string'
         }
       }
     }
