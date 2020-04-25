@@ -15,9 +15,9 @@ npm install nexus-plugin-jwt-auth
 
 ## Example Usage
 
-In `app.ts`:
-
 ```typescript
+// app.ts
+
 import { use } from 'nexus'
 import { auth } from 'nexus-plugin-jwt-auth'
 
@@ -31,9 +31,9 @@ You may now access the `token` object and it's properties on the Nexus `context`
 
 > In this example when I sign the token on signup or login, I store the property accountId within it.
 
-In `Query.ts`:
-
 ```typescript
+// Query.ts
+
 import { schema } from 'nexus'
 
 schema.queryType({
