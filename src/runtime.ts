@@ -7,20 +7,17 @@ export const plugin: RuntimePlugin<Settings> = settings => project => {
     context: {
       create: (req: any) => {
         const appSecret = settings?.appSecret
-        if (!appSecret) {
+
+        if (appSecret && req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+          const token = req.headers.authorization.split(' ')[1]
+          const verifiedToken = verify(token, appSecret)
           return {
-            token: null
+            token: verifiedToken
           }
         }
 
-        var token = null
-        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-          token = req.headers.authorization.split(' ')[1]
-        }
-
-        const verifiedToken = verify(token, appSecret)
         return {
-          token: verifiedToken
+          token: null
         }
       },
       typeGen: {
