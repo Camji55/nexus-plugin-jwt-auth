@@ -4,11 +4,6 @@ import { Settings } from './settings'
 import { applyMiddleware } from './middleware'
 
 export const plugin: RuntimePlugin<Settings> = settings => project => {
-  const protectedPaths = settings?.protectedPaths
-  if (protectedPaths) {
-    applyMiddleware(protectedPaths)
-  }
-
   return {
     context: {
       create: (req: any) => {
