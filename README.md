@@ -4,6 +4,9 @@
 
 - [Installation](#installation)
 - [Example Usage](#example-usage)
+    - [Setup](#setup)
+    - [Permissions](#permissions)
+    - [Stored Properties](#stored-properties)
 - [Contributing](#contributing)
 - [License](#license)
 
