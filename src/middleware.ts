@@ -1,26 +1,25 @@
 import { schema } from "nexus"
 
-function applyMiddleware(permissions: string[]) {
+function applyMiddleware(protectedPaths: string[]) {
     schema.middleware((config) => {
         return async (root, args, ctx, info, next) => {
-            const value = await next(root, args, ctx, info)
             const parentType = config.parentTypeConfig.name
-
+    
             if (parentType != 'Query' && parentType != 'Mutation') {
-                return value
+                return await next(root, args, ctx, info)
             }
     
             const resolver = `${parentType}.${config.fieldConfig.name}`
-
-            if (!permissions.includes(resolver)) {
-                return value
+    
+            if (!protectedPaths.includes(resolver)) {
+                return await next(root, args, ctx, info)
             }
     
             if (!ctx.token) {
                 throw new Error('Not Authorized!')
             }
     
-            return value
+            return await next(root, args, ctx, info)
         }
     })
 }
