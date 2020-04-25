@@ -82,24 +82,24 @@ You can also access properties stored in the token.
 import { schema } from 'nexus'
 
 schema.queryType({
-  definition(t) {
-    t.field('me', {
-      type: 'Account',
-      async resolve(_root, _args, ctx) {
-        const account = await ctx.db.account.findOne({
-          where: {
-            id: ctx.token.accountId // This is the token object passed through the context
-          }
+    definition(t) {
+        t.field('me', {
+            type: 'Account',
+            async resolve(_root, _args, ctx) {
+                const account = await ctx.db.account.findOne({
+                    where: {
+                        id: ctx.token.accountId // This is the token object passed through the context
+                    }
+                })
+
+                if (!account) {
+                    throw new Error('No such account exists')
+                }
+
+                return account
+            }
         })
-
-        if (!account) {
-          throw new Error('No such account exists')
-        }
-
-        return account
-      }
-    })
-  },
+    },
 })
 ```
 
