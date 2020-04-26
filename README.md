@@ -1,4 +1,4 @@
-# JWT Auth Nexus Plugin
+<img src="https://user-images.githubusercontent.com/2769158/80298536-2796b180-8742-11ea-81c4-fcbcca851083.png" />
 
 ## Contents
 
