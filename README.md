@@ -1,4 +1,6 @@
 # JWT Auth Nexus Plugin
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCamji55%2Fnexus-plugin-jwt-auth.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FCamji55%2Fnexus-plugin-jwt-auth?ref=badge_shield)
+
 
 ## Contents
 
@@ -97,3 +99,6 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md)
 ## License
 
 Please read [LICENSE](LICENSE)
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FCamji55%2Fnexus-plugin-jwt-auth.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FCamji55%2Fnexus-plugin-jwt-auth?ref=badge_large)
