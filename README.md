@@ -18,7 +18,10 @@ npm install nexus-plugin-jwt-auth
 
 ## Example Usage
 
-Find an example project [here](https://github.com/Camji55/nexus-plugin-jwt-auth/tree/master/example).
+Find full examples using both the built in permissions system or by leveragering [nexus-plugin-shield](https://github.com/lvauvillier/nexus-plugin-shield):
+
+- **Basic Permissions** - [examples/basic-permissions](https://github.com/Camji55/nexus-plugin-jwt-auth/tree/master/examples/basic-permissions)
+- **[Shield](https://github.com/lvauvillier/nexus-plugin-shield)** -  [examples/shield](https://github.com/Camji55/nexus-plugin-jwt-auth/tree/master/examples/shield)
 
 ### Setup
 
