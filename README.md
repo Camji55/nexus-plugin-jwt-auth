@@ -18,6 +18,11 @@ npm install nexus-plugin-jwt-auth
 
 ## Example Usage
 
+Find full examples using both the built in permissions system or by leveragering [nexus-plugin-shield](https://github.com/lvauvillier/nexus-plugin-shield):
+
+- **Basic Permissions** - [examples/basic-permissions](https://github.com/Camji55/nexus-plugin-jwt-auth/tree/master/examples/basic-permissions)
+- **[Shield](https://github.com/lvauvillier/nexus-plugin-shield)** -  [examples/shield](https://github.com/Camji55/nexus-plugin-jwt-auth/tree/master/examples/shield)
+
 ### Setup
 
 ```typescript
@@ -45,9 +50,13 @@ import { use } from 'nexus'
 import { auth } from 'nexus-plugin-jwt-auth'
 
 // Define the paths you'd like to protect
-const protectedPaths: [
-  'Query.me',
-  'Mutation.editAccount'
+const protectedPaths = [
+    'Query.me',
+    'Query.filterPosts',
+    'Query.post',
+    'Mutation.createDraft',
+    'Mutation.deletePost',
+    'Mutation.publish'
 ]
 
 // Enables the JWT Auth plugin with permissions
@@ -61,7 +70,7 @@ use(auth({
 
 You can also access properties stored in the token.
 
-> In this example I sign the token on signup or login then store the accountId in the token to be accessed directly in a query or mutation to find the account of the authed user.
+> In this example I sign the token on signup or login then store the userId in the token to be accessed directly in a query or mutation to find the authed user.
 
 ```typescript
 // Query.ts
@@ -71,19 +80,19 @@ import { schema } from 'nexus'
 schema.queryType({
   definition(t) {
     t.field('me', {
-      type: 'Account',
+      type: 'User',
       async resolve(_root, _args, ctx) {
-        const account = await ctx.db.account.findOne({
+        const account = await ctx.db.user.findOne({
           where: {
-            id: ctx.token.accountId // This is the token object passed through the context
+            id: ctx.token.userId // This is the token object passed through the context
           }
         })
 
-        if (!account) {
-          throw new Error('No such account exists')
+        if (!user) {
+          throw new Error('No such user exists')
         }
 
-        return account
+        return user
       }
     })
   }
