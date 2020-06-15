@@ -12,10 +12,10 @@ export const plugin: RuntimePlugin<Settings, 'required'> = settings => project =
 
   return {
     context: {
-      create: (req: any) => {
+      create: async (req: any) => {
         if (settings.verify) {
           return {
-            token: settings.verify(req)
+            token: await settings.verify(req)
           }
         } else if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
           const token = req.headers.authorization.split(' ')[1]
