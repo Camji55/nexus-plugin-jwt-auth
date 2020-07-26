@@ -19,17 +19,10 @@ export const plugin: RuntimePlugin<Settings, 'required'> = settings => project =
           }
         } else if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
           const token = req.headers.authorization.split(' ')[1]
-          try {
-            const verifiedToken = verify(token, settings.appSecret)
-            return {
-              token: verifiedToken
-            }
-          }
-          catch (err) {
-            return {
-              token: null
-            }
-          }
+          verifyToken(token, settings.appSecret)
+        } else if (settings.useCookie && req.cookies && req.cookies[settings.cookieName]) {
+          const token = req.cookies[settings.cookieName];
+          return verifyToken(token, settings.appSecret);
         }
 
         return {
@@ -45,5 +38,24 @@ export const plugin: RuntimePlugin<Settings, 'required'> = settings => project =
     schema: {
       plugins
     }
+  }
+}
+
+/**
+ * Verify a token
+ *
+ * @param token
+ * @param appSecret
+ */
+const verifyToken = (token: string, appSecret: string) => {
+  try {
+    const verifiedToken = verify(token, appSecret)
+    return {
+      token: verifiedToken,
+    };
+  } catch (err) {
+    return {
+      token: null,
+    };
   }
 }
