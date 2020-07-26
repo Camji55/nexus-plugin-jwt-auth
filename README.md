@@ -118,6 +118,8 @@ use(auth({
 }))
 ```
 
+Don't forget to set `credentials: true`in your GraphQL client or the cookie will not be sent to the server.
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md)
