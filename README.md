@@ -2,11 +2,13 @@
 
 ## Contents
 
+- [Contents](#contents)
 - [Installation](#installation)
 - [Example Usage](#example-usage)
   - [Setup](#setup)
   - [Permissions](#permissions)
   - [Stored Properties](#stored-properties)
+- [Use cookie instead of Authorization header](#use-cookie-instead-of-authorization-header)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -97,6 +99,23 @@ schema.queryType({
     })
   }
 })
+```
+
+## Use cookie instead of Authorization header
+
+```typescript
+import { use, server } from "nexus"
+import cookieParser from "cookie-parser" // Set esModuleInterop: true in tsconfig.json
+
+// Add the cookie-parser middleware to Express
+server.express.use(cookieParser())
+
+// Enables the JWT Auth plugin with cookies
+use(auth({
+  // ...
+  useCookie: true,
+  cookieName: "token"
+}))
 ```
 
 ## Contributing

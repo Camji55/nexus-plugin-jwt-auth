@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@nexus/schema": "^0.14.0",
+    "cookie-parser": "^1.4.5",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
