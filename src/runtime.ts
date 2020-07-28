@@ -22,7 +22,7 @@ export const plugin: RuntimePlugin<Settings, 'required'> = settings => project =
           return verifyToken(token, settings.appSecret);
         } else if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
           const token = req.headers.authorization.split(' ')[1]
-          verifyToken(token, settings.appSecret)
+          return verifyToken(token, settings.appSecret)
         }
 
         return {
