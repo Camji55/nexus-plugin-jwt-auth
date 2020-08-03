@@ -17,11 +17,15 @@ export const plugin: RuntimePlugin<Settings, 'required'> = settings => project =
           return {
             token: await settings.verify(req)
           }
-        } else if (settings.useCookie && req.cookies && settings.cookieName && req.cookies[settings.cookieName]) {
-          const token = req.cookies[settings.cookieName];
-          return verifyToken(token, settings.appSecret);
-        } else if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
-          const token = req.headers.authorization.split(' ')[1]
+        } else if (settings.appSecret != undefined) {
+          let token
+
+          if (settings.useCookie && req.cookies && settings.cookieName && req.cookies[settings.cookieName]) {
+            token = req.cookies[settings.cookieName];
+          } else if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+            token = req.headers.authorization.split(' ')[1]
+          }
+
           return verifyToken(token, settings.appSecret)
         }
 
