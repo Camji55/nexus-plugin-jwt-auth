@@ -35,7 +35,7 @@ import { auth } from 'nexus-plugin-jwt-auth'
 
 // Enables the JWT Auth plugin without permissions
 use(auth({
-  appSecret: "<YOUR SECRET>" // required
+  appSecret: "<YOUR SECRET>" // optional if using custom verify function
 }))
 ```
 
@@ -63,7 +63,7 @@ const protectedPaths = [
 
 // Enables the JWT Auth plugin with permissions
 use(auth({
-  appSecret: "<YOUR SECRET>", // required
+  appSecret: "<YOUR SECRET>", // optional if using custom verify function
   protectedPaths // optional
 }))
 ```

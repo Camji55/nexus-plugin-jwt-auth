@@ -1,7 +1,7 @@
 import { Request } from "express";
 
 export type Settings = {
-  appSecret: string;
+  appSecret?: string;
   protectedPaths?: string[];
   useCookie?: boolean;
   cookieName?: string;
