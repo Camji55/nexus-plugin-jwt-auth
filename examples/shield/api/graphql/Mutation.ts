@@ -80,7 +80,7 @@ export const Mutation = schema.mutationType({
     t.field('deletePost', {
       type: 'Post',
       nullable: true,
-      args: { id: schema.intArg() },
+      args: { id: schema.intArg({ nullable: false }) },
       resolve: (parent, { id }, ctx) => {
         return ctx.db.post.delete({
           where: {
@@ -93,7 +93,7 @@ export const Mutation = schema.mutationType({
     t.field('publish', {
       type: 'Post',
       nullable: true,
-      args: { id: schema.intArg() },
+      args: { id: schema.intArg({ nullable: false }) },
       resolve: (parent, { id }, ctx) => {
         return ctx.db.post.update({
           where: { id },

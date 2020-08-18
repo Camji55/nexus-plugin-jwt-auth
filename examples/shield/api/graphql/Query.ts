@@ -31,7 +31,7 @@ export const Query = schema.queryType({
     t.list.field('filterPosts', {
       type: 'Post',
       args: {
-        searchString: schema.stringArg({ nullable: true }),
+        searchString: schema.stringArg({ nullable: false }),
       },
       resolve: (parent, { searchString }, ctx) => {
         return ctx.db.post.findMany({
@@ -56,7 +56,7 @@ export const Query = schema.queryType({
     t.field('post', {
       type: 'Post',
       nullable: true,
-      args: { id: schema.intArg() },
+      args: { id: schema.intArg({ nullable: false }) },
       resolve: (parent, { id }, ctx) => {
         return ctx.db.post.findOne({
           where: {

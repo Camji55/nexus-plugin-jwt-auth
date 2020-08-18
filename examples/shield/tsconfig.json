@@ -6,9 +6,18 @@
       "esnext"
     ],
     "strict": true,
-    "rootDir": "api"
+    "rootDir": "api",
+    "plugins": [
+      { "name": "nexus/typescript-language-service" }
+    ],
+    "typeRoots": [
+      "node_modules/@types","types"
+    ],
+    "noEmit": true,
+    "esModuleInterop": true
   },
   "include": [
-    "api"
+    "api",
+    "types.d.ts"
   ]
 }
