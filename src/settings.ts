@@ -5,5 +5,6 @@ export type Settings = {
   protectedPaths?: string[];
   useCookie?: boolean;
   cookieName?: string;
+  tokenType?: string;
   verify?: (req: Request) => Promise<any> | any;
 };
