@@ -1,6 +1,6 @@
 {
   "name": "nexus-plugin-jwt-auth",
-  "version": "v1.3.1",
+  "version": "v1.4.0",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/nexus-plugin-auth.esm.js",
@@ -15,12 +15,12 @@
     "prepack": "yarn -s build"
   },
   "dependencies": {
-    "@nexus/schema": "^0.14.0",
+    "@nexus/schema": "^0.15.0",
     "cookie-parser": "^1.4.5",
     "jsonwebtoken": "^8.5.1"
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^8.3.9",
-    "nexus": "^0.23.0"
+    "nexus": "^0.26.1"
   }
 }
