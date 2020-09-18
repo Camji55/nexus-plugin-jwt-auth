@@ -84,7 +84,7 @@ schema.queryType({
     t.field('me', {
       type: 'User',
       async resolve(_root, _args, ctx) {
-        const account = await ctx.db.user.findOne({
+        const user = await ctx.db.user.findOne({
           where: {
             id: ctx.token.userId // This is the token object passed through the context
           }
